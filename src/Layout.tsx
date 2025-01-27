@@ -11,7 +11,7 @@ function Layout() {
         <NavbarSlide />
       </nav>
 
-      <main className="min-h-screen bg-slate-50">
+      <main className="min-h-screen">
         <Outlet />
       </main>
     </div>
