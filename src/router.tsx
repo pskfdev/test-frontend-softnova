@@ -1,8 +1,20 @@
-import { createBrowserRouter, Link } from "react-router-dom";
+import { createBrowserRouter, Link, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Layout from "./Layout";
 /* Pages */
 import Home from "./pages/Home";
 import ProductCart from "./pages/Product-Cart";
+
+
+export default function ScrollToTop() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
+  return null;
+}
 
 export const router = createBrowserRouter([
   /* Client router */

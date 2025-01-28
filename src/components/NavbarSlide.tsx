@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 /* Components */
 import { AiFillShopping } from "react-icons/ai";
 
@@ -28,7 +29,10 @@ function NavbarSlide() {
       }`}
     >
       <div className="h-full flex items-center justify-around">
-        <div className="rounded-full overflow-hidden flex items-center bg-orange-400 drop-shadow-2xl">
+        <NavLink
+          to="/"
+          className="rounded-full overflow-hidden flex items-center bg-orange-400 drop-shadow-2xl"
+        >
           <img
             className={`w-14 scale-150 object-cover transition-all duration-300 ${
               isScrolled ? "block" : "hidden"
@@ -36,16 +40,17 @@ function NavbarSlide() {
             src="/img/logo.png"
             alt="logo"
           />
-        </div>
+        </NavLink>
 
-        <div
+        <NavLink
+          to="/cart"
           className={`text-red-500 relative ${isScrolled ? "block" : "hidden"}`}
         >
           <AiFillShopping size={32} />
           <p className="absolute top-3 left-2 text-xs px-1 text-white rounded-full">
             1
           </p>
-        </div>
+        </NavLink>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-function Promote() {
+function Promote({ handleScroll }) {
   return (
     <main className="relative">
       <div className="w-full h-[400px] bg-white"></div>
@@ -19,7 +19,7 @@ function Promote() {
           </div>
           <div className="text-white space-y-5 text-center lg:text-start">
             <p className="tracking-widest">eBook Version is Available</p>
-            <button className="px-10 py-2 text-white hover:text-main-brown border border-white hover:bg-white transition ease-in-out duration-300">
+            <button onClick={handleScroll} className="px-10 py-2 text-white hover:text-main-brown border border-white hover:bg-white transition ease-in-out duration-300">
               Buy Now
             </button>
           </div>

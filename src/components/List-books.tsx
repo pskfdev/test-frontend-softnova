@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, forwardRef } from "react";
 import CardBook from "./Card-book";
 
 type Props = {};
 
-function ListBooks({}: Props) {
+const ListBooks = forwardRef<HTMLDivElement>((prop, ref) => {
   const [books, setBooks] = useState([]);
 
   const fetchData = async () => {
@@ -22,7 +22,7 @@ function ListBooks({}: Props) {
   }, []);
 
   return (
-    <div className="py-20 text-main-brown">
+    <div ref={ref} className="py-20 text-main-brown">
       {/* Header */}
       <div className="w-full flex flex-col items-center">
         <h2 className="text-center flex items-center tracking-wider">
@@ -49,6 +49,6 @@ function ListBooks({}: Props) {
       </div>
     </div>
   );
-}
+});
 
 export default ListBooks;
