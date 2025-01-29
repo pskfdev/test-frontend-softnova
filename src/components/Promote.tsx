@@ -1,4 +1,8 @@
-function Promote({ handleScroll }) {
+interface Props {
+  handleScroll: () => void;
+}
+
+function Promote({ handleScroll }: Props) {
   return (
     <main className="relative">
       <div className="w-full h-[400px] bg-white"></div>
