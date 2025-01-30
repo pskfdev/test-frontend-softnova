@@ -1,0 +1,51 @@
+[
+  {
+    "id": 0,
+    "name": "Harry Potter 1",
+    "image": "/img/potter1.png",
+    "price": 100,
+    "detail": "Harry Potter and the Sorcerer's Stone"
+  },
+  {
+    "id": 1,
+    "name": "Harry Potter 2",
+    "image": "/img/potter2.png",
+    "price": 100,
+    "detail": "Harry Potter And The Chamber Of Secrets"
+  },
+  {
+    "id": 2,
+    "name": "Harry Potter 3",
+    "image": "/img/potter3.png",
+    "price": 100,
+    "detail": "Harry Potter And The Prisoner Of Azkaban"
+  },
+  {
+    "id": 3,
+    "name": "Harry Potter 4",
+    "image": "/img/potter4.png",
+    "price": 100,
+    "detail": "Harry Potter And The Goblet Of Fire"
+  },
+  {
+    "id": 4,
+    "name": "Harry Potter 5",
+    "image": "/img/potter5.png",
+    "price": 100,
+    "detail": "Harry Potter And The Order Of The Phoenix"
+  },
+  {
+    "id": 5,
+    "name": "Harry Potter 6",
+    "image": "/img/potter6.png",
+    "price": 100,
+    "detail": "Harry Potter And The Half Blood Prince"
+  },
+  {
+    "id": 6,
+    "name": "Harry Potter 7",
+    "image": "/img/potter7.png",
+    "price": 100,
+    "detail": "Harry Potter and the Deathly"
+  }
+]

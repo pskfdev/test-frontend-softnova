@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { AiOutlineShopping, AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
+/* Type */
+import { Books } from "./List-books";
 
-type Props = {};
 
-function CardBook({ image, title, price }: Props) {
+function CardBook({ id, image, name, price, detail }: Books) {
 
   const [quantity, setQuantity] = useState(1);
 
@@ -12,17 +13,18 @@ function CardBook({ image, title, price }: Props) {
   const handleDecrease = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
   return (
-    <div className="w-80 h-96 rounded-2xl p-5 overflow-hidden space-y-5 bg-white group relative shadow-lg hover:shadow-2xl transition-shadow duration-300">
+    <div className="w-80 h-96 rounded-2xl py-8 overflow-hidden space-y-5 bg-white group relative shadow-lg hover:shadow-2xl transition-shadow duration-300">
       <div>
         <img
           src={image}
-          alt={title}
-          className="w-64 h-64 mx-auto object-cover"
+          alt={name}
+          className="w-60 h-64 mx-auto drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]"
         />
       </div>
       <div className="text-center">
-        <h3>Potter 1</h3>
-        <p>{price}</p>
+        <h3 className="tracking-wide">{name}</h3>
+        <p className="text-xs">{detail}</p>
+        <p className="text-red-500">{price} ฿</p>
       </div>
 
       {/* ไอคอนตะกร้าสินค้าเมื่อ hover */}

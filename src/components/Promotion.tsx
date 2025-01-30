@@ -3,8 +3,8 @@ function Promotion() {
     <section className="flex flex-col lg:flex-row">
       <div className="lg:w-1/2">
         <img
-          src="/public/img/bg-sale.jpg"
-          alt=""
+          src="/img/bg-sale.jpg"
+          alt="bg-sale"
           className="w-[400px] py-5 lg:py-0 mx-auto lg:w-full h-full object-cover brightness-75 lg:rounded-r-3xl drop-shadow-2xl"
         />
       </div>

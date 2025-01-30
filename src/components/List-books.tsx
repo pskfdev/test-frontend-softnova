@@ -1,14 +1,20 @@
 import { useState, useEffect, forwardRef } from "react";
 import CardBook from "./Card-book";
 
-type Props = {};
+export type Books = {
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+  detail: string;
+};
 
 const ListBooks = forwardRef<HTMLDivElement>((prop, ref) => {
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState<Books[]>([]);
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://fakestoreapi.com/products?limit=7");
+      const response = await fetch("./data/data.json");
       const data = await response.json();
 
       setBooks(data);
@@ -36,14 +42,16 @@ const ListBooks = forwardRef<HTMLDivElement>((prop, ref) => {
           {books ? (
             books?.map((item) => (
               <CardBook
-                key={item.id}
-                image={item.image}
-                title={item.title}
-                price={item.price}
+                key={item?.id}
+                id={item?.id}
+                image={item?.image}
+                name={item?.name}
+                price={item?.price}
+                detail={item?.detail}
               />
             ))
           ) : (
-            <p className="text-cecnter">ไม่มีข้อมูลหนังสือ</p>
+            <p className="text-cecnter">Book not found..</p>
           )}
         </div>
       </div>

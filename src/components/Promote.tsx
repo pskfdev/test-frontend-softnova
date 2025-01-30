@@ -10,8 +10,8 @@ function Promote({ handleScroll }: Props) {
       <article className="flex flex-col lg:flex-row items-center lg:space-x-20 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full lg:w-fit">
         <div>
           <img
-            src="https://static.wixstatic.com/media/46a9af1d9d8642edab228733a946086c.png/v1/fill/w_494,h_680,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Book%20Cover%20.png"
-            alt=""
+            src="/img/book.png"
+            alt="book"
             className="w-[395px] h-[544px] object-cover"
           />
         </div>

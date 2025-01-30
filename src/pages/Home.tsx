@@ -9,7 +9,7 @@ function Home() {
   const listBooksRef = useRef<HTMLDivElement | null>(null);
 
   const handleScrollToBooks = (): void => {
-    listBooksRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    listBooksRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
