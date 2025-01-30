@@ -3,8 +3,9 @@ export const loadState = () => {
   try {
     const cartStore = localStorage.getItem("cartStore");
     const cart = JSON.parse(cartStore);
+    /* const { cart } = JSON.parse(cartStore); */
 
-    if (cart.length == 0) {
+    if (cart.cart.length == 0) {
       return [];
     } else {
       return cart;
