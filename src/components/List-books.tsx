@@ -43,11 +43,7 @@ const ListBooks = forwardRef<HTMLDivElement>((prop, ref) => {
             books?.map((item) => (
               <CardBook
                 key={item?.id}
-                id={item?.id}
-                image={item?.image}
-                name={item?.name}
-                price={item?.price}
-                detail={item?.detail}
+                item={item}
               />
             ))
           ) : (

@@ -1,33 +1,37 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 /* Functions */
 import { loadState } from "./util";
-/* Type */
-import { Books } from "../components/List-books";
 
+
+export interface ItemCart {
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+  detail: string;
+  quantity: number;
+};
 
 interface CartState {
-  cart: Array<Books>;
+  cart: Array<ItemCart>;
 }
 
 const initialState: CartState = {
-  cart: [],
+  cart: loadState(),
 };
 
 export const cartSlice = createSlice({
   name: "cartStore",
   initialState: initialState,
   reducers: {
-    addcart: (state, action: PayloadAction<CartState>) => {
-      state.cart = [];
+    addcart: (state, action: PayloadAction<ItemCart>) => {
+      state.cart = [...state.cart, action.payload];
     },
-    removecart: (state, action: PayloadAction<CartState>) => {
-      state.cart = [];
-    },
-    clearcart: (state) => {
-      state.cart = [];
+    updateCart: (state, action: PayloadAction<CartState>) => {
+      state.cart = action.payload;
     },
   },
 });
 
-export const { addcart, removecart } = cartSlice.actions;
+export const { addcart, updateCart } = cartSlice.actions;
 export default cartSlice.reducer;

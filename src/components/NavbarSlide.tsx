@@ -2,9 +2,12 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 /* Components */
 import { AiFillShopping } from "react-icons/ai";
+//Redux
+import { useSelector } from "react-redux";
 
 function NavbarSlide() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const cart = useSelector((state: any) => state.cartStore.cart); /* [] */
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,7 +51,7 @@ function NavbarSlide() {
         >
           <AiFillShopping size={32} />
           <p className="absolute top-3 left-2 text-xs px-1 text-white rounded-full">
-            1
+            {cart.length != 0 && cart.length}
           </p>
         </NavLink>
       </div>

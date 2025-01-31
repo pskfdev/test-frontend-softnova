@@ -1,27 +1,38 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { BsArrowLeft } from "react-icons/bs";
-
-interface CartItem {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
-}
+//Redux
+import { useSelector, useDispatch } from "react-redux";
+import { updateCart } from "../store/cartSlice";
+//Type
+import { ItemCart } from "../store/cartSlice";
 
 function ProductCart() {
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    { id: 1, name: "Product A", price: 100, quantity: 2 },
-    { id: 2, name: "Product B", price: 200, quantity: 1 },
-    { id: 3, name: "Product C", price: 150, quantity: 3 },
-  ]);
+
+  const dispatch = useDispatch();
+  const cart = useSelector((state: any) => state.cartStore.cart);
+
+  const handleUpdateQuantity = (id: number, newQuantity: number) => {
+    dispatch(
+      updateCart(
+        cart.map((item: ItemCart) =>
+          item.id == id ? { ...item, quantity: newQuantity } : item
+        )
+      )
+    );
+  };
+
+  const handleRemoveItem = (id: number) => {
+    dispatch(updateCart(cart.filter((item: ItemCart) => item.id !== id)));
+  };
 
   return (
     <section className="flex flex-col lg:flex-row m-5 border-y border-gray-100 shadow-lg rounded-xl">
       <div className="py-8 w-full text-main-brown">
         <header className="py-5 mx-2 md:mx-16 flex justify-between items-center border-b-2 border-gray-100">
           <h2 className="tracking-wide">Shopping Cart</h2>
-          <h2 className="tracking-wide">3 Items</h2>
+          <h2 className="tracking-wide">
+            {cart.length != 0 && cart.length} Items
+          </h2>
         </header>
 
         <div className="py-5 mx-2 md:mx-16 overflow-x-auto">
@@ -36,40 +47,48 @@ function ProductCart() {
               </tr>
             </thead>
             <tbody>
-              {cartItems.length > 0 ? (
-                cartItems.map((item, idx) => (
+              {cart.length > 0 ? (
+                cart.map((item: any, idx: number) => (
                   <tr
                     key={item.id}
                     className="text-center text-main-brown hover:bg-gray-50"
                   >
                     <td className="hidden md:table-cell">{idx}</td>
-                    <td className="py-5 flex items-center justify-center md:space-x-8">
+                    <td className="py-5 flex items-center justify-start md:space-x-8">
                       <img
-                        src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+                        src={item?.image}
                         alt={item.name}
-                        className="w-16 h-16 hidden md:block"
+                        className="w-16 h-16 hidden md:block md:ml-5 lg:ml-20"
                       />
                       <div className="py-1 text-xs text-start space-y-2">
                         <p>{item.name}</p>
-                        <p className="text-gray-400">รายละเอียด</p>
-                        <button className="p-1 text-red-500 hover:bg-red-500 hover:text-white rounded-lg transition ease-in-out duration-300">
+                        <p className="text-gray-400">{item?.detail}</p>
+                        <button
+                          onClick={() => handleRemoveItem(item?.id)}
+                          className="p-1 text-red-500 hover:bg-red-500 hover:text-white rounded-lg transition ease-in-out duration-300"
+                        >
                           Remove
                         </button>
                       </div>
                     </td>
-                    <td>${item.price.toFixed(2)}</td>
+                    <td>
+                      {item.price.toFixed(2)} <span className="text-xs">฿</span>
+                    </td>
                     <td>
                       <input
                         type="number"
                         min={1}
                         value={item.quantity}
-                        /* onChange={(e) =>
-                        handleUpdateQuantity(item.id, Number(e.target.value))
-                      } */
+                        onChange={(e) =>
+                          handleUpdateQuantity(item.id, Number(e.target.value))
+                        }
                         className="w-16 border border-gray-300 rounded-md px-2 py-1"
                       />
                     </td>
-                    <td>${(item.price * item.quantity).toFixed(2)}</td>
+                    <td>
+                      {(item.price * item.quantity).toFixed(2)}{" "}
+                      <span className="text-xs">฿</span>
+                    </td>
                   </tr>
                 ))
               ) : (
@@ -99,14 +118,24 @@ function ProductCart() {
 
         {/* List Books */}
         <div className="py-6 mx-14 border-b-2 border-white space-y-5">
-          <p className="text-sm font-bold uppercase text-slate-600">Items 3</p>
+          <p className="text-sm font-bold uppercase text-slate-600">
+            Items {cart.length != 0 && cart.length}
+          </p>
 
           <div>
-            {cartItems.length > 0 &&
-              cartItems.map((item) => (
-                <div className="flex justify-between items-center space-y-2">
-                  <p>{item.name} * 2 ea</p>
-                  <p>{item.price}</p>
+            {cart.length > 0 &&
+              cart.map((item: ItemCart) => (
+                <div
+                  key={item?.id}
+                  className="flex justify-between items-center space-y-2"
+                >
+                  <p>
+                    {item.name} * {item.quantity} ea
+                  </p>
+                  <p>
+                    {(item.price * item.quantity).toFixed(2)}{" "}
+                    <span className="text-xs">฿</span>
+                  </p>
                 </div>
               ))}
           </div>
@@ -115,7 +144,9 @@ function ProductCart() {
         {/* Total */}
         <div className="py-6 mx-14 flex justify-between items-center text-sm font-bold">
           <p className="uppercase text-red-500">Total cost</p>
-          <p>452</p>
+          <p>
+            452 <span className="text-xs">฿</span>
+          </p>
         </div>
 
         <div className="mx-14">

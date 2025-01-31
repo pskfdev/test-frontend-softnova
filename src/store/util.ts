@@ -1,14 +1,13 @@
 /* Load data from localStorage */
 export const loadState = () => {
   try {
-    const cartStore = localStorage.getItem("cartStore");
-    const cart = JSON.parse(cartStore);
-    /* const { cart } = JSON.parse(cartStore); */
+    const cartStore:any = localStorage.getItem("cartStore");
+    const listCart = JSON.parse(cartStore);
 
-    if (cart.cart.length == 0) {
+    if (listCart.cart.length == 0) {
       return [];
     } else {
-      return cart;
+      return listCart.cart;
     }
   } catch (error) {
     return [];
@@ -17,7 +16,7 @@ export const loadState = () => {
 
 /* save value to localStorage */
 /* state คือ เข้าถึงข้อมูลใน store ไฟล์store */
-export const saveState = (state:any) => {
+export const saveState = (state: any) => {
   try {
     const cartStore = JSON.stringify(state.cartStore);
 
