@@ -1,6 +1,7 @@
 ﻿# Test Frontend บริษัท Softnova
 
-โปรเจคแบบทดสอบเขียนเว็บไซต์ในส่วนหน้าของบริษัท Softnova โดยใช้ `VITE React.ts framework`
+โปรเจคแบบทดสอบเขียนเว็บไซต์ตามโจทย์ของบริษัท Softnova โดยใช้ `VITE React.ts framework`
+`หัวข้อโจทย์ที่เลือกทำคือ โจทย์สำหรับ Frontend`
 
 และมีฟังก์ชั่นดังนี้
 
@@ -16,6 +17,3 @@
 * css
   * tailwind
 * redux/toolkit
-
-## Template design
-https://www.wix.com/website/templates/html/online-store/books-publishers?utm_source=google&utm_medium=cpc&utm_campaign=21355403721^164675781833^search%20-%20dsa&experiment_id=^^701641900318^&gad_source=1&gclid=CjwKCAiAtNK8BhBBEiwA8wVt92mfN8vXO6IajuB01D2gY3uKIi11DozPJB5mheL5VIxcMcTWdGPZ8RoCl4sQAvD_BwE
