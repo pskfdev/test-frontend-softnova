@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BsArrowLeft } from "react-icons/bs";
 //Redux
@@ -5,11 +6,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateCart } from "../store/cartSlice";
 //Type
 import { ItemCart } from "../store/cartSlice";
+import { RootState } from "../store/store";
+
+interface discountState {
+  discounts: string;
+  value: number;
+}
 
 function ProductCart() {
-
   const dispatch = useDispatch();
-  const cart = useSelector((state: any) => state.cartStore.cart);
+  const cart = useSelector((state: RootState) => state.cartStore.cart);
+
+  const [discount, setDiscount] = useState<discountState[]>([]);
+  const [totalPrice, setTotalPrice] = useState<number | null>(null);
+
 
   const handleUpdateQuantity = (id: number, newQuantity: number) => {
     dispatch(
@@ -24,6 +34,84 @@ function ProductCart() {
   const handleRemoveItem = (id: number) => {
     dispatch(updateCart(cart.filter((item: ItemCart) => item.id !== id)));
   };
+
+  const handleDiscount = (groupUnique: ItemCart[][]) => {
+  
+    const listDiscount: discountState[] = [];
+
+    groupUnique.forEach((group) => {
+      switch (group.length) {
+        case 1:
+          listDiscount.push({ discounts: "don't have discounts", value: 0 });
+
+          break;
+        case 2:
+          listDiscount.push({ discounts: "discount 10%", value: 20 });
+
+          break;
+        case 3:
+          listDiscount.push({ discounts: "discount 20%", value: 60 });
+
+          break;
+        case 4:
+          listDiscount.push({ discounts: "discount 30%", value: 120 });
+
+          break;
+        case 5:
+          listDiscount.push({ discounts: "discount 40%", value: 200 });
+
+          break;
+        case 6:
+          listDiscount.push({ discounts: "discount 50%", value: 300 });
+
+          break;
+        case 7:
+          listDiscount.push({ discounts: "discount 60%", value: 420 });
+
+          break;
+        default:
+          console.log(`In addition to promotions`);
+      }
+    });
+    /* สำหรับแสดงผลส่วนลด */
+    setDiscount(listDiscount);
+
+    return listDiscount;
+  };
+
+  const calculatePrice = () => {
+    const maxQuantity = Math.max(...cart.map((book) => book.quantity));
+    const groupUnique: ItemCart[][] = Array.from({ length: maxQuantity }, () => []);
+
+    /* จัดกลุ่มที่ไม่ซ้ำ */
+    cart.forEach((book) => {
+      const groupSize = book.quantity || 1;
+      for (let i = 0; i < groupSize; i++) {
+        if (groupUnique[i]) {
+          groupUnique[i].push(book);
+        }
+      }
+    });
+
+    /* บันทึกข้อมูล และราคาส่วนลด */
+    const listDiscount = handleDiscount(groupUnique);
+
+    /* ส่วนลดทั้งหมด */
+    const totalDiscounts = listDiscount.reduce((sum, book) => {
+      return sum + book.value;
+    }, 0);
+
+    /* ราคายังไม่ลด */
+    const totalPrice = cart.reduce((sum, book) => {
+      return sum + book.price * book.quantity;
+    }, 0);
+
+    setTotalPrice(totalPrice - totalDiscounts);
+  };
+
+  useEffect(() => {
+    calculatePrice();
+  }, [cart]);
 
   return (
     <section className="flex flex-col lg:flex-row m-5 border-y border-gray-100 shadow-lg rounded-xl">
@@ -48,7 +136,7 @@ function ProductCart() {
             </thead>
             <tbody>
               {cart.length > 0 ? (
-                cart.map((item: any, idx: number) => (
+                cart.map((item: ItemCart, idx: number) => (
                   <tr
                     key={item.id}
                     className="text-center text-main-brown hover:bg-gray-50"
@@ -72,7 +160,7 @@ function ProductCart() {
                       </div>
                     </td>
                     <td>
-                      {item.price.toFixed(2)} <span className="text-xs">฿</span>
+                      {item.price} <span className="text-xs">฿</span>
                     </td>
                     <td>
                       <input
@@ -86,7 +174,7 @@ function ProductCart() {
                       />
                     </td>
                     <td>
-                      {(item.price * item.quantity).toFixed(2)}{" "}
+                      {(item.price * item.quantity)}{" "}
                       <span className="text-xs">฿</span>
                     </td>
                   </tr>
@@ -133,8 +221,27 @@ function ProductCart() {
                     {item.name} * {item.quantity} ea
                   </p>
                   <p>
-                    {(item.price * item.quantity).toFixed(2)}{" "}
+                    {(item.price * item.quantity)}{" "}
                     <span className="text-xs">฿</span>
+                  </p>
+                </div>
+              ))}
+          </div>
+
+          {/* Discounts */}
+          <p className="text-sm font-bold uppercase text-red-500 px-1 bg-orange-200 w-fit rounded-lg">
+            {discount.length != 0 && "Discounts"}
+          </p>
+          <div>
+            {discount.length != 0 &&
+              discount.map((item, idx) => (
+                <div
+                  key={idx}
+                  className={`${item.value != 0 ? 'flex justify-between items-center space-y-2 text-orange-500' : 'hidden'}`}
+                >
+                  <p>{item.discounts}</p>
+                  <p>
+                    {item.value} <span className="text-xs">฿</span>
                   </p>
                 </div>
               ))}
@@ -143,9 +250,9 @@ function ProductCart() {
 
         {/* Total */}
         <div className="py-6 mx-14 flex justify-between items-center text-sm font-bold">
-          <p className="uppercase text-red-500">Total cost</p>
+          <p className="uppercase text-red-500">Total</p>
           <p>
-            452 <span className="text-xs">฿</span>
+            {totalPrice} <span className="text-xs">฿</span>
           </p>
         </div>
 

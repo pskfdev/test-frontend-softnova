@@ -18,7 +18,7 @@ function Promote({ handleScroll }: Props) {
         <div className="lg:w-1/2 space-y-5 lg:space-y-28 px-5 lg:px-0 text-white lg:text-main-brown">
           <div>
             <h1 className="tracking-wide">
-              A Best-Selling Book by Emily Clark
+              A Best-Selling Book by J.K. Rowling
             </h1>
           </div>
           <div className="text-white space-y-5 text-center lg:text-start">

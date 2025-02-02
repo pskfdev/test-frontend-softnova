@@ -10,21 +10,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { addcart, updateCart } from "../store/cartSlice";
 /* Type */
 import { ItemCart } from "../store/cartSlice";
+import { RootState } from "../store/store";
 
-type Props = {
-  id: number;
-  name: string;
-  image: string;
-  price: number;
-  detail: string;
-};
-
-function CardBook({ item }: Props) {
-  const [quantity, setQuantity] = useState(1);
-  const [loading, setLoading] = useState(false);
+function CardBook({ item }: any) {
+  
+  const [quantity, setQuantity] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const dispatch = useDispatch();
-  const cart = useSelector((state: any) => state.cartStore.cart); /* [] */
+  const cart = useSelector((state: RootState) => state.cartStore.cart); /* [] */
 
   const handleIncrease = () => setQuantity((prev) => prev + 1);
   const handleDecrease = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));

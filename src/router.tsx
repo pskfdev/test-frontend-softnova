@@ -17,7 +17,6 @@ export default function ScrollToTop() {
 }
 
 export const router = createBrowserRouter([
-  /* Client router */
   {
     path: "/",
     element: <Layout />,

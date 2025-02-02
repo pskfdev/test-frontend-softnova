@@ -1,11 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-
 /* router-dom */
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router.jsx";
-
 /* Redux */
 import { Provider } from "react-redux";
 import { store } from "./store/store";

@@ -15,7 +15,7 @@ const ListBooks = forwardRef<HTMLDivElement>((prop, ref) => {
   const fetchData = async () => {
     try {
       const response = await fetch("./data/data.json");
-      const data = await response.json();
+      const data: Books[] = await response.json();
 
       setBooks(data);
     } catch (error) {

@@ -4,10 +4,11 @@ import { NavLink } from "react-router-dom";
 import { AiFillShopping } from "react-icons/ai";
 //Redux
 import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 function NavbarSlide() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const cart = useSelector((state: any) => state.cartStore.cart); /* [] */
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const cart = useSelector((state: RootState) => state.cartStore.cart); /* [] */
 
   useEffect(() => {
     const handleScroll = () => {

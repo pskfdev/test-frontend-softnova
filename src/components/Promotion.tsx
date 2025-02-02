@@ -9,25 +9,39 @@ function Promotion() {
         />
       </div>
       <div className="lg:w-1/2 flex justify-center items-center">
-        <div className="w-3/4 space-y-5 text-main-brown">
-          <div>
+        <div className="w-3/4 text-main-brown">
+          <div className="my-5">
             <h2 className="text-center flex items-center tracking-wider">
               Promotion
             </h2>
             <div className="w-[90px] mt-2 border-b-2 border-main-brown rounded-xl"></div>
           </div>
-          <p className="tracking-wider">
-            I'm a paragraph. Click here to add your own text and edit me. It’s
-            easy. Just click “Edit Text” or double click me to add your own
-            content and make changes to the font. Feel free to drag and drop me
-            anywhere you like on your page.{" "}
-          </p>
-          <p className="tracking-wider">
-            This is a great space to write long text about your company and your
-            services. You can use this space to go into a little more detail
-            about your company. Talk about your team and what services you
-            provide.{" "}
-          </p>
+          <div className="space-y-2">
+            <h3 className="tracking-wider">
+              ซื้อเล่มไม่ซ้ำกัน 2 เล่ม ลด{" "}
+              <span className="text-red-500">10%</span> ของ 2 เล่มนั้น
+            </h3>
+            <h3 className="tracking-wider">
+              ซื้อเล่มไม่ซ้ำกัน 3 เล่ม ลด{" "}
+              <span className="text-red-500">20%</span> ของ 3 เล่มนั้น
+            </h3>
+            <h3 className="tracking-wider">
+              ซื้อเล่มไม่ซ้ำกัน 4 เล่ม ลด{" "}
+              <span className="text-red-500">30%</span> ของ 4 เล่มนั้น
+            </h3>
+            <h3 className="tracking-wider">
+              ซื้อเล่มไม่ซ้ำกัน 5 เล่ม ลด{" "}
+              <span className="text-red-500">40%</span> ของ 5 เล่มนั้น
+            </h3>
+            <h3 className="tracking-wider">
+              ซื้อเล่มไม่ซ้ำกัน 6 เล่ม ลด{" "}
+              <span className="text-red-500">50%</span> ของ 6 เล่มนั้น
+            </h3>
+            <h3 className="tracking-wider">
+              ซื้อเล่มไม่ซ้ำกัน 7 เล่ม ลด{" "}
+              <span className="text-red-500">60%</span> ของ 7 เล่มนั้น
+            </h3>
+          </div>
         </div>
       </div>
     </section>

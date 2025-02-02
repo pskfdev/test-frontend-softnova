@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-/* Slice */
 import cartSlice from "./cartSlice";
 /* Functions */
 import { saveState } from "./util";
@@ -15,6 +14,6 @@ store.subscribe(() => {
   saveState(store.getState());
 });
 
-// กำหนด Types สำหรับ RootState และ AppDispatch
+/* กำหนด Types สำหรับ RootState และ AppDispatch */
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

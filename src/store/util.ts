@@ -1,8 +1,14 @@
+import { RootState } from "./store";
+
 /* Load data from localStorage */
 export const loadState = () => {
   try {
-    const cartStore:any = localStorage.getItem("cartStore");
-    const listCart = JSON.parse(cartStore);
+    const cartStore: string | null = localStorage.getItem("cartStore");
+    if (!cartStore) {
+      return [];
+    }
+
+    const listCart = JSON.parse(cartStore)
 
     if (listCart.cart.length == 0) {
       return [];
@@ -16,7 +22,7 @@ export const loadState = () => {
 
 /* save value to localStorage */
 /* state คือ เข้าถึงข้อมูลใน store ไฟล์store */
-export const saveState = (state: any) => {
+export const saveState = (state: RootState) => {
   try {
     const cartStore = JSON.stringify(state.cartStore);
 
