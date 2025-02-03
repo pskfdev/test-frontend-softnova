@@ -11,14 +11,19 @@ import { addcart, updateCart } from "../store/cartSlice";
 /* Type */
 import { ItemCart } from "../store/cartSlice";
 import { RootState } from "../store/store";
+import { Books } from "./List-books";
 
-function CardBook({ item }: any) {
+interface Props {
+  item: Books
+}
+
+function CardBook({ item }: Props) {
   
   const [quantity, setQuantity] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
 
   const dispatch = useDispatch();
-  const cart = useSelector((state: RootState) => state.cartStore.cart); /* [] */
+  const cart = useSelector((state: RootState) => state.cartStore.cart);
 
   const handleIncrease = () => setQuantity((prev) => prev + 1);
   const handleDecrease = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));

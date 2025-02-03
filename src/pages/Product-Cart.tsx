@@ -80,13 +80,19 @@ function ProductCart() {
   };
 
   const calculatePrice = () => {
+    /* หาหนังสือที่มีจำนวนมากที่สุดในตะกร้า เพื่อเอาไปกำหนดจำนวนกลุ่ม */
     const maxQuantity = Math.max(...cart.map((book) => book.quantity));
+    /* สร้างกลุ่ม Array ตามค่า maxQuantity */
+    /* ex. maxQuantity = 2 จะได้ [[], []] */
     const groupUnique: ItemCart[][] = Array.from({ length: maxQuantity }, () => []);
 
     /* จัดกลุ่มที่ไม่ซ้ำ */
     cart.forEach((book) => {
-      const groupSize = book.quantity || 1;
-      for (let i = 0; i < groupSize; i++) {
+      /* หาค่า quantity ของหนังสือ เพื่อกำหนดจำนวนรอบ */
+      const count = book.quantity;
+
+      /* วนลูปกระจายหนังสือลงแต่ละกลุ่ม */
+      for (let i = 0; i < count; i++) {
         if (groupUnique[i]) {
           groupUnique[i].push(book);
         }
